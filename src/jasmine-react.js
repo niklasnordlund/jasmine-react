@@ -43,19 +43,12 @@ var jasmineReact = {
     return jasmineSpy;
   },
 
-  classComponentConstructor: function(klass){
-    return klass.type ||                // React 0.11.1
-           klass.componentConstructor;  // React 0.8.0
-  },
-
   classPrototype: function(klass){
-    var componentConstructor = this.classComponentConstructor(klass);
-
-    if(typeof componentConstructor === "undefined"){
+    if(typeof klass === "undefined"){
       throw("A component constructor could not be found for this class.  Are you sure you passed in a the component definition for a React component?");
     }
 
-    return componentConstructor.prototype;
+    return klass.prototype;
   },
 
   createStubComponent: function(obj, propertyName){
